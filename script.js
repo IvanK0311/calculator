@@ -18,13 +18,29 @@ const addBtn = document.getElementById("add")
 const substractBtn = document.getElementById("substract")
 const multiplyBtn = document.getElementById("multiply")
 const divideBtn = document.getElementById("divide")
-let factor1 
-let factor2 
+let factor1 = 0
+let factor2 = 0
+let operator
+let result 
 let factor1Arr = []
 let factor2Arr = []
 
-botScreen.textContent = "0"
-topScreen.textContent = "0"
+botScreen.textContent = factor1
+topScreen.textContent = factor2
+
+function operate (a, b) {
+    if (operator === "-") {
+        result = a - b
+    } else if (operator === "+") {
+        result = a + b
+    } else if (operator === "÷") {
+        result = a / b
+    } else if (operator === "×") {
+        result = a * b
+    }
+    factor1 = 0
+    factor2 = 0
+}
 
 
 function pushToFactor1(n) {
@@ -34,62 +50,130 @@ function pushToFactor1(n) {
 
 function updateBotScreen() {
     factor1 = factor1Arr.map(num => num.toString()).join(''); 
+    factor1 = parseFloat(factor1)
     botScreen.textContent = factor1
 }
 
 clearBtn.addEventListener('click', () => {
-    topScreen.textContent = "0"
-    botScreen.textContent = "0"
+    factor1 = 0
+    factor2 = 0
+    result = 0
+    topScreen.textContent = factor2
+    botScreen.textContent = factor1
     factor1Arr = []
     factor2Arr = []
 })
 
 deleteBtn.addEventListener('click', () => {
     if(factor1Arr.length === 0) {
-        botScreen.textContent = "0"
+        factor1 = 0
+        botScreen.textContent = factor1
     } else if (factor1Arr.length > 0) {
         factor1Arr.pop()
         factor1 = factor1Arr.map(num => num.toString()).join('');
+        factor1 = parseFloat(factor1)
         botScreen.textContent = factor1
         if(factor1Arr.length === 0) {
-            botScreen.textContent = "0"
+            factor1 = 0
+            botScreen.textContent = factor1
         }
     }
 })
 
 multiplyBtn.addEventListener('click', () => {
-    factor1Arr.push(" ×")
-    factor2Arr = factor1Arr
-    factor1Arr = []
-    factor2 = factor2Arr.map(num => num.toString()).join('');
-    botScreen.textContent = "0"
-    topScreen.textContent = factor2
+    if (factor2 === 0) {
+        factor2Arr = factor1Arr
+        factor1Arr = []
+        factor2 = factor2Arr.map(num => num.toString()).join('');
+        factor1 = 0
+        factor2 = parseFloat(factor2)
+        operator = "×"
+        botScreen.textContent = factor1
+        topScreen.textContent = factor2 + " ×"
+    } else if (factor2 != 0) {
+        operate(factor2, factor1)
+        factor2 = result
+        operator = "×"
+        topScreen.textContent = factor2 + " ×"
+        factor1 = 0
+        factor1Arr = []
+        botScreen.textContent = factor1
+        console.log(factor1)
+    }
 })
 
 substractBtn.addEventListener('click', () => {
-    factor1Arr.push(" -")
-    factor2Arr = factor1Arr
-    factor1Arr = []
-    factor2 = factor2Arr.map(num => num.toString()).join('');
-    botScreen.textContent = "0"
-    topScreen.textContent = factor2
+    if (factor2 === 0) {
+        factor2Arr = factor1Arr
+        factor1Arr = []
+        factor2 = factor2Arr.map(num => num.toString()).join('');
+        factor1 = 0
+        factor2 = parseFloat(factor2)
+        operator = "-"
+        botScreen.textContent = factor1
+        topScreen.textContent = factor2 + " -"
+    } else if (factor2 != 0) {
+        operate(factor2, factor1)
+        factor2 = result
+        operator = "-"
+        topScreen.textContent = factor2 + " -"
+        factor1 = 0
+        factor1Arr = []
+        botScreen.textContent = factor1
+        console.log(factor1)
+    }
 })
 
 addBtn.addEventListener('click', () => {
-    factor1Arr.push(" +")
-    factor2Arr = factor1Arr
-    factor1Arr = []
-    factor2 = factor2Arr.map(num => num.toString()).join('');
-    botScreen.textContent = "0"
-    topScreen.textContent = factor2
+    if (factor2 === 0) {
+        factor2Arr = factor1Arr
+        factor1Arr = []
+        factor2 = factor2Arr.map(num => num.toString()).join('');
+        factor1 = 0
+        factor2 = parseFloat(factor2)
+        operator = "+"
+        botScreen.textContent = factor1
+        topScreen.textContent = factor2 + " +"
+    } else if (factor2 != 0) {
+        operate(factor2, factor1)
+        factor2 = result
+        operator = "+"
+        topScreen.textContent = factor2 + " +"
+        factor1 = 0
+        factor1Arr = []
+        botScreen.textContent = factor1
+        console.log(factor1)
+    }
 })
 
 divideBtn.addEventListener('click', () => {
-    factor1Arr.push(" ÷")
-    factor2Arr = factor1Arr
+    if (factor2 === 0) {
+        factor2Arr = factor1Arr
+        factor1Arr = []
+        factor2 = factor2Arr.map(num => num.toString()).join('');
+        factor1 = 0
+        factor2 = parseFloat(factor2)
+        operator = "÷"
+        botScreen.textContent = factor1
+        topScreen.textContent = factor2 + " ÷"
+    } else if (factor2 != 0) {
+        operate(factor2, factor1)
+        factor2 = result
+        operator = "÷"
+        topScreen.textContent = factor2 + " ÷"
+        factor1 = 0
+        factor1Arr = []
+        botScreen.textContent = factor1
+        console.log(factor1)
+    }
+})
+
+equalBtn.addEventListener('click', () => {
+    operate(factor2, factor1)
+    botScreen.textContent = result
+    factor2 = 0
+    factor1 = 0
     factor1Arr = []
-    factor2 = factor2Arr.map(num => num.toString()).join('');
-    botScreen.textContent = "0"
     topScreen.textContent = factor2
 })
 
@@ -136,8 +220,3 @@ zeroBtn.addEventListener('click', () => {
 decimalBtn.addEventListener('click', () => {
     pushToFactor1(".")
 })
-
-
-
-
-
