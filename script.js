@@ -26,7 +26,7 @@ let factor1Arr = []
 let factor2Arr = []
 
 botScreen.textContent = factor1
-topScreen.textContent = factor2
+topScreen.textContent = ""
 
 function operate (a, b) {
     if (operator === "-") {
@@ -34,7 +34,11 @@ function operate (a, b) {
     } else if (operator === "+") {
         result = a + b
     } else if (operator === "÷") {
-        result = a / b
+        if (b === 0) {
+            result = "Error"
+        } else {
+            result = a / b
+        }
     } else if (operator === "×") {
         result = a * b
     }
@@ -164,7 +168,7 @@ divideBtn.addEventListener('click', () => {
         factor1 = 0
         factor1Arr = []
         botScreen.textContent = factor1
-        console.log(factor1)
+        console.log(factor1) 
     }
 })
 
