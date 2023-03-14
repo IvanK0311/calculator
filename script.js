@@ -31,16 +31,20 @@ topScreen.textContent = ""
 function operate (a, b) {
     if (operator === "-") {
         result = a - b
+        result = parseFloat(result.toFixed(2))
     } else if (operator === "+") {
         result = a + b
+        result = parseFloat(result.toFixed(2))
     } else if (operator === "÷") {
         if (b === 0) {
             result = "Error"
         } else {
             result = a / b
+            result = parseFloat(result.toFixed(2))
         }
     } else if (operator === "×") {
         result = a * b
+        result = parseFloat(result.toFixed(2))
     }
     factor1 = 0
     factor2 = 0
@@ -54,15 +58,16 @@ function pushToFactor1(n) {
 
 function updateBotScreen() {
     factor1 = factor1Arr.map(num => num.toString()).join(''); 
-    factor1 = parseFloat(factor1)
     botScreen.textContent = factor1
+    factor1 = parseFloat(factor1)
+    
 }
 
 clearBtn.addEventListener('click', () => {
     factor1 = 0
     factor2 = 0
     result = 0
-    topScreen.textContent = factor2
+    topScreen.textContent = ""
     botScreen.textContent = factor1
     factor1Arr = []
     factor2Arr = []
@@ -174,10 +179,9 @@ divideBtn.addEventListener('click', () => {
 
 equalBtn.addEventListener('click', () => {
     operate(factor2, factor1)
-    botScreen.textContent = result
     factor2 = 0
-    factor1 = 0
-    factor1Arr = []
+    factor1 = result
+    botScreen.textContent = factor1
     topScreen.textContent = factor2
 })
 
@@ -221,6 +225,9 @@ zeroBtn.addEventListener('click', () => {
     pushToFactor1(0)
 })
 
-decimalBtn.addEventListener('click', () => {
-    pushToFactor1(".")
+decimalBtn.addEventListener('click', () => {   
+    if (factor1Arr.includes(".")) {
+    } else {
+        pushToFactor1(".")
+    }
 })
