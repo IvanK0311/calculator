@@ -88,7 +88,8 @@ a {
     height: 67.5px;
     font-size: 67.5px;
     font-weight: lighter;
-    overflow:hidden
+    overflow: scroll;
+    
 }
 
 #calculator {
@@ -106,16 +107,6 @@ a {
     border: 2px black solid;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
-}
-
-header {
-    position: absolute;
-    top: 0;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 90px;
-    height: 100px;
-    margin: 0;
 }
 
 #delete {
