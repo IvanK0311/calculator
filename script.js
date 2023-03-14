@@ -186,47 +186,78 @@ equalBtn.addEventListener('click', () => {
 })
 
 oneBtn.addEventListener('click', () => {
-    pushToFactor1(1)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(1) 
+    }
 })
 
 twoBtn.addEventListener('click', () => {
-    pushToFactor1(2)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(2) 
+    }
 })
 
 threeBtn.addEventListener('click', () => {
-    pushToFactor1(3)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(3) 
+    }
 })
 
 fourBtn.addEventListener('click', () => {
-    pushToFactor1(4)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(4) 
+    }
 })
 
 fiveBtn.addEventListener('click', () => {
-    pushToFactor1(5)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(5) 
+    }
 })
 
 sixBtn.addEventListener('click', () => {
-    pushToFactor1(6)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(6) 
+    }
 })
 
 sevenBtn.addEventListener('click', () => {
-    pushToFactor1(7)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(7) 
+    }
 })
 
 eightBtn.addEventListener('click', () => {
-    pushToFactor1(8)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(8) 
+    }
 })
 
 nineBtn.addEventListener('click', () => {
-    pushToFactor1(9)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(9) 
+    }
 })
 
 zeroBtn.addEventListener('click', () => {
-    pushToFactor1(0)
+    if (factor1Arr.length > 9) {
+    } else {
+        pushToFactor1(0) 
+    }
 })
 
-decimalBtn.addEventListener('click', () => {   
-    if (factor1Arr.includes(".")) {
+decimalBtn.addEventListener('click', () => {  
+    if (factor1Arr.length > 9){
+    } else if (factor1Arr.includes(".")) {
     } else {
         pushToFactor1(".")
     }
